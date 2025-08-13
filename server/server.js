@@ -5,12 +5,16 @@ import 'dotenv/config'
 import connectDB from "./config/db.js"
 import * as Sentry from "@sentry/node";
 import { clerbWebhooks } from './controllers/webhooks.js'
+import companyRoutes from './routes/companyRoutes.js'
+import connectCloudinary from './config/cloudinary.js'
 
 //express
 const app = express()
 
 //connect to db
 await connectDB()
+await connectCloudinary()
+
 
 //middlewares
 app.use(cors())
@@ -26,6 +30,7 @@ app.get("/debug-sentry", function mainHandler(req, res) {
 });
 
 app.post('/webhooks',clerbWebhooks)
+app.use('/api/company', companyRoutes)
 
 //port
 const PORT = process.env.PORT || 5000
