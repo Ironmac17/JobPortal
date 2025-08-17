@@ -3,6 +3,7 @@ import Quill from 'quill'
 import { JobCategories, JobLocations } from '../assets/assets';
 import axios from 'axios';
 import { AppContext } from '../context/AppContext';
+import {toast} from 'react-toastify'
 
 const AddJobs = () => {
 
